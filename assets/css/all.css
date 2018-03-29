@@ -6693,6 +6693,8 @@ body > nav {
       font-size: 17px;
       color: rgba(0, 0, 0, 0.75);
       line-height: 1.75; }
+      #mission .row.article p strong {
+        font-weight: 700; }
       #mission .row.article p em {
         font-family: "PT Serif", serif; }
       #mission .row.article p .green-highlight {

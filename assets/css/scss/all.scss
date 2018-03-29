@@ -162,6 +162,10 @@ body > nav {
       font-size: 17px;
       color: rgba(black,.75);
       line-height: 1.75;
+      strong {
+        font-weight: 700;
+      }
+
       em {
         font-family: $serif-font-stack;
         &.red {
