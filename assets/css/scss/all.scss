@@ -22,6 +22,12 @@ body > nav {
   margin-bottom: -100px;
   box-shadow: none;
   font-weight: normal;
+  display: none;
+  @media #{$breakpoint-md-up}{
+    display: flex;
+  }
+
+
   .name {
     font-size: 1.3rem;
   }
@@ -39,30 +45,72 @@ body > nav {
   background-image: linear-gradient(56deg, #ED7B73 0%, #F1B570 33%, #6DC38A 66%, #77BAE6 100%);
   color: white;
 
-  min-height: 600px;
-  padding: 170px 0 100px;
+  padding: 100px 0 100px;
 
   display: flex;
   flex-direction: column;
+
   @include center(xs);
 
-  .self-portrait {
-    display: flex;
-    flex-direction: column;
+
+  text-align: center;
+  > .row {
+    //padding: 0 20px;
     @include center(xs);
+  }
+  @media #{$breakpoint-md-up}{
+    text-align: left;
+    padding: 190px 0 120px;
+  }
+
+
+
+
+
+
+
+  .text {
+    order: 1;
+    @media #{$breakpoint-md-up}{
+      text-align: left;
+    }
+  }
+
+  .self-portrait {
+
+    // starting small
+    order: 0;
+    max-width: 25%;
+    padding-bottom: 20px;
+    max-width: 200px;
+
+    // md and up
+    @media #{$breakpoint-md-up}{
+      display: flex;
+      flex-direction: column;
+      @include center(xs);
+      order: 1;
+    }
+
     img {
       @extend .responsive-img;
       @extend .circle;
-      //max-width: 200px;
     }
   }
 
 
   h1 {
+
+    // starting small
+    font-size: 1.7em;
     margin: 0;
     font-weight: 100;
     text-shadow: 0 2px 0 rgba(0,0,0,0.02);
-    font-size: 3.5rem;
+    // md and up
+    @media #{$breakpoint-md-up}{
+      font-size: 3.3rem;
+    }
+
     strong {
       font-weight: 700;
     }
@@ -91,14 +139,13 @@ body > nav {
 
   .row.article {
     max-width: 740px;
-    /*~ .row.article::before {
-      border-top: 1px solid rgba(black,.1);
-      content: '   ';
-      display: block;
-      width: 100%;
-      position: absolute;
-      left: 0;
-    }*/
+
+    @media #{$breakpoint-xs-only}{
+      padding: 0 $gutter*2;
+    }
+    @media #{$breakpoint-sm-only}{
+      padding: 0 $gutter*3;
+    }
 
     a {
       &:hover {
@@ -133,8 +180,12 @@ body > nav {
     @extend .purple-text;
     font-style: italic;
     font-family: $serif-font-stack;
-    font-size: 2rem;
-    line-height: 1.4;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    @media #{$breakpoint-md-up}{
+      font-size: 1.7rem;
+    }
+
   }
   h4 {
     color: rgba(black,.85);
@@ -143,6 +194,7 @@ body > nav {
     font-size: .8em;
     text-transform: uppercase;
     font-weight: 600;
+    line-height: 1.5;
   }
 
 
