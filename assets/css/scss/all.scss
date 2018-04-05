@@ -1,5 +1,6 @@
 @import "materialize/materialize";
 @import "sass-flexbox/main";
+$primary-gradient: linear-gradient(56deg, #ED7B73 0%, #F1B570 33%, #6DC38A 66%, #77BAE6 100%);
 
 
 
@@ -12,7 +13,7 @@
 }
 
 .row {
-  &:not(full-width){
+  &:not(.full-width){
     max-width: 1040px;
   }
 }
@@ -41,33 +42,23 @@ body > nav {
   }
 }
 
-#intro {
-  background-image: linear-gradient(56deg, #ED7B73 0%, #F1B570 33%, #6DC38A 66%, #77BAE6 100%);
+section.intro {
+  background: $primary-gradient;
   color: white;
-
   padding: 100px 0 100px;
-
   display: flex;
   flex-direction: column;
-
   @include center(xs);
-
-
   text-align: center;
+
   > .row {
-    //padding: 0 20px;
     @include center(xs);
   }
+
   @media #{$breakpoint-md-up}{
     text-align: left;
     padding: 190px 0 120px;
   }
-
-
-
-
-
-
 
   .text {
     order: 1;
@@ -76,28 +67,11 @@ body > nav {
     }
   }
 
-  .self-portrait {
-
-    // starting small
-    order: 0;
-    max-width: 25%;
-    padding-bottom: 20px;
-    max-width: 200px;
-
-    // md and up
-    @media #{$breakpoint-md-up}{
-      display: flex;
-      flex-direction: column;
-      @include center(xs);
-      order: 1;
-    }
-
-    img {
-      @extend .responsive-img;
-      @extend .circle;
-    }
+  .text p {
+    font-size: 20px;
+    max-width: 700px;
+    font-weight: 200;
   }
-
 
   h1 {
 
@@ -130,33 +104,90 @@ body > nav {
     strong {
     }
   }
+
+
+
+  // for homepage
+  .self-portrait {
+    // starting small
+    order: 0;
+    max-width: 25%;
+    padding-bottom: 20px;
+    max-width: 200px;
+    // md and up
+    @media #{$breakpoint-md-up}{
+      display: flex;
+      flex-direction: column;
+      @include center(xs);
+      order: 1;
+    }
+    img {
+      @extend .responsive-img;
+      @extend .circle;
+    }
+  }
+
+}
+
+//  persona deck placeholder
+.pdp {
+  //@include center(xs);
 }
 
 
-#mission {
+.article {
+  //padding: 6rem 0;
+  color: rgba(black,.75);
 
-  padding: 6rem 0;
 
-  .row.article {
+  > .row.full-width {
+    background: #dddddd;
+    padding: 6rem 2rem;
+    text-align: center;
+    color: white;
+
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+
+  > .row.artifact {
+    background: $color-blue;
+    background-size: 32px 32px;
+    background-image: linear-gradient(to right, rgba(white,.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(white,.1) 1px, transparent 1px);  }
+
+  > .row.timeline {
+    background: $color-purple;
+  }
+
+  > .row.product {
+    background: $primary-gradient;
+  }
+
+
+  > .row.text {
+    padding: 6rem 0;
     max-width: 740px;
-
     @media #{$breakpoint-xs-only}{
-      padding: 0 $gutter*2;
+      padding: 4rem $gutter*2;
     }
     @media #{$breakpoint-sm-only}{
-      padding: 0 $gutter*3;
+      padding: 4rem $gutter*3;
     }
-
     a {
       &:hover {
         background: rgba($color-blue,.35);
         color: darken($color-blue,40%);
       }
     }
-
-    > .col > * {
+    > section > *:not(:last-child) {
+      margin: 0 0 2rem 0;
+    }
+    section:not(:last-child) {
       margin: 0 0 3rem 0;
     }
+    ul,
     p {
       max-width: 620px;
       font-size: 17px;
@@ -165,23 +196,71 @@ body > nav {
       strong {
         font-weight: 700;
       }
-
       em {
         font-family: $serif-font-stack;
-        &.red {
-          //@extend .red-text;
+      }
+    }
+
+
+
+
+    ul li strong ~ em:before{
+      content: '\00B7 \ ';
+      padding: 0 .25rem;
+    }
+    .green-highlight {
+      background: rgba($color-green,.5);
+    }
+    .red-highlight {
+      background: rgba($color-red,.5);
+    }
+
+    section.complex-challenge {
+      background: rgba($color-yellow,.35);
+      padding: 3rem 4rem;
+      blockquote {
+        border-color: rgba(black,.2);
+        font-family: $serif-font-stack;
+        font-style: italic;
+        //margin-bottom: 0;
+        //font-size: 2rem;
+        @media #{$breakpoint-md-up}{
+          font-size: 1.5rem;
+        }
+        ~ cite {
+          font-style: normal;
+          opacity: .5;
+          display: block;
+          &:before {
+            content: "\2014 \ "
+          }
         }
       }
-      .green-highlight {
-        background: rgba($color-green,.5);
-      }
-      .red-highlight {
-        background: rgba($color-red,.5);
-      }
+    }
+  }
+  > .row.text .sources {
+    background: #dddddd;
+    padding: 5rem;
+    opacity: .7;
+    transition: .2s ease all;
+    &:hover {
+      opacity: 1;
+    }
+
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.3;
+    font-size: 2rem;
+    @media #{$breakpoint-md-up}{
+      font-size: 3rem;
     }
   }
   h2.question {
     @extend .purple-text;
+    font-weight: unset;
     font-style: italic;
     font-family: $serif-font-stack;
     font-size: 1.4rem;
@@ -189,7 +268,14 @@ body > nav {
     @media #{$breakpoint-md-up}{
       font-size: 1.7rem;
     }
-
+  }
+  h3 {
+    font-weight: 700;
+    line-height: 1.3;
+    font-size: 1.5rem;
+    @media #{$breakpoint-md-up}{
+      font-size: 2rem;
+    }
   }
   h4 {
     color: rgba(black,.85);
@@ -200,6 +286,9 @@ body > nav {
     font-weight: 600;
     line-height: 1.5;
   }
-
-
+}
+.article.hostelhops {
+  em {
+    opacity: .8;
+  }
 }
