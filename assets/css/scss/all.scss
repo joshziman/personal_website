@@ -1,6 +1,17 @@
 @import "materialize/materialize";
 @import "sass-flexbox/main";
+
 $primary-gradient: linear-gradient(56deg, #ED7B73 0%, #F1B570 33%, #6DC38A 66%, #77BAE6 100%);
+$text-max-width: 740px;
+
+@mixin all-caps {
+  text-transform: uppercase;
+  letter-spacing: .3em;
+  //font-weight: 600;
+}
+
+
+
 
 
 
@@ -17,6 +28,8 @@ $primary-gradient: linear-gradient(56deg, #ED7B73 0%, #F1B570 33%, #6DC38A 66%, 
     max-width: 1040px;
   }
 }
+
+
 body > nav {
   background: rgba(black,.1);
   height: 100px;
@@ -27,8 +40,6 @@ body > nav {
   @media #{$breakpoint-md-up}{
     display: flex;
   }
-
-
   .name {
     font-size: 1.3rem;
   }
@@ -55,6 +66,10 @@ section.intro {
     @include center(xs);
   }
 
+  &.hostelhops > .row {
+    max-width: $text-max-width;
+  }
+
   @media #{$breakpoint-md-up}{
     text-align: left;
     padding: 190px 0 120px;
@@ -62,6 +77,7 @@ section.intro {
 
   .text {
     order: 1;
+    text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.05);
     @media #{$breakpoint-md-up}{
       text-align: left;
     }
@@ -70,16 +86,19 @@ section.intro {
   .text p {
     font-size: 20px;
     max-width: 700px;
-    font-weight: 200;
+    font-weight: 300;
+    margin: 3rem 0 0 0;
   }
 
   h1 {
+
+
 
     // starting small
     font-size: 1.7em;
     margin: 0;
     font-weight: 100;
-    text-shadow: 0 2px 0 rgba(0,0,0,0.02);
+    text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.05);
     // md and up
     @media #{$breakpoint-md-up}{
       font-size: 3.3rem;
@@ -129,27 +148,30 @@ section.intro {
 
 }
 
-//  persona deck placeholder
-.pdp {
-  //@include center(xs);
-}
+
 
 
 .article {
-  //padding: 6rem 0;
-  color: rgba(black,.75);
 
+  color: rgba(black,.75);
 
   > .row.full-width {
     background: #dddddd;
-    padding: 6rem 2rem;
+    padding: 6rem 0;
     text-align: center;
     color: white;
 
-    align-items: center;
-    justify-items: center;
-    align-content: center;
-    justify-content: center;
+    overflow-x: scroll;
+    > div {
+      overflow-x: scroll;
+      flex: 1;
+      flex-shrink: 0;
+      flex-basis: auto;
+      justify-content: center;
+    }
+    > div > * {
+      overflow-x: hidden;
+    }
   }
 
   > .row.artifact {
@@ -159,6 +181,7 @@ section.intro {
 
   > .row.timeline {
     background: $color-purple;
+    //display: none;
   }
 
   > .row.product {
@@ -168,7 +191,7 @@ section.intro {
 
   > .row.text {
     padding: 6rem 0;
-    max-width: 740px;
+    max-width: $text-max-width;
     @media #{$breakpoint-xs-only}{
       padding: 4rem $gutter*2;
     }
@@ -280,8 +303,8 @@ section.intro {
   h4 {
     color: rgba(black,.85);
     @extend .blue-text;
-    letter-spacing: .3em;
     font-size: .8em;
+    letter-spacing: .3em;
     text-transform: uppercase;
     font-weight: 600;
     line-height: 1.5;
@@ -290,5 +313,116 @@ section.intro {
 .article.hostelhops {
   em {
     opacity: .8;
+  }
+}
+
+
+
+//  persona deck placeholder
+.full-width .story,
+.full-width .personas {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  > img {
+  }
+}
+
+.full-width .avatars {
+  display: flex;
+  figcaption {
+      display: block;
+      padding: 1rem 0;
+      .title {
+        color: black;
+        opacity: .4;
+        text-transform: uppercase;
+        letter-spacing: .15rem;
+        font-size: 90%;
+        font-weight: 600;
+      }
+      .name {
+        font-size: 2rem;
+        display: block;
+      }
+  }
+  figure img {
+    display: block;
+    //margin: 0 2rem;
+    max-width: 160px;
+    border-radius: 100rem;
+    &.with-photo {
+      transition: 1s ease all;
+      background-size:     cover;
+      background-repeat:   no-repeat;
+      background-position: center center;              /* optional, center the image */
+      position: relative;
+      z-index: 300;
+
+    }
+    // trigger bg appearance when section is scrolled to, with short delay to see the photo come to life
+    &.with-bg-avatar:hover {
+
+
+
+    }
+  }
+
+}
+
+.full-width .story {
+  height: 400px;
+  &:before {
+    content: ' ';
+    height: 6px;
+    width: 100%;
+    background: red;
+    position: absolute;
+    background: rgba(black,.15);
+    z-index: 0;
+    transform: translate(0, 197px);
+  }
+  > * {
+    z-index: 1;
+  }
+}
+.full-width .personas {
+  figure {
+    min-width: 400px;
+    figcaption {
+      @include all-caps;
+      opacity: .5;
+      font-size: 90%;
+      margin: 1rem 0;
+    }
+  }
+}
+.artifact .avatars {
+  figure:before {
+    content: '?';
+    background: white;
+    color: $color-red;
+    border-radius: 100rem;
+    $size: 50px;
+    font-size: $size/2;
+    line-height: $size;
+    height: $size;
+    width: $size;
+    margin-bottom: -$size;
+    transform: translate(0, 0);
+    position: relative;
+    display: block;
+  }
+  figure figcaption {
+    .name  {
+      opacity: .1;
+      display: none;
+    }
+    .title {
+      color: white;
+      opacity: 1;
+    }
   }
 }

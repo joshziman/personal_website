@@ -6632,24 +6632,28 @@ section.intro {
   text-align: center; }
   section.intro > .row {
     justify-content: center; }
+  section.intro.hostelhops > .row {
+    max-width: 740px; }
   @media only screen and (min-width: 65rem) {
     section.intro {
       text-align: left;
       padding: 190px 0 120px; } }
   section.intro .text {
-    order: 1; }
+    order: 1;
+    text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.05); }
     @media only screen and (min-width: 65rem) {
       section.intro .text {
         text-align: left; } }
   section.intro .text p {
     font-size: 20px;
     max-width: 700px;
-    font-weight: 200; }
+    font-weight: 300;
+    margin: 3rem 0 0 0; }
   section.intro h1 {
     font-size: 1.7em;
     margin: 0;
     font-weight: 100;
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.02); }
+    text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.05); }
     @media only screen and (min-width: 65rem) {
       section.intro h1 {
         font-size: 3.3rem; } }
@@ -6681,13 +6685,18 @@ section.intro {
   color: rgba(0, 0, 0, 0.75); }
   .article > .row.full-width {
     background: #dddddd;
-    padding: 6rem 2rem;
+    padding: 6rem 0;
     text-align: center;
     color: white;
-    align-items: center;
-    justify-items: center;
-    align-content: center;
-    justify-content: center; }
+    overflow-x: scroll; }
+    .article > .row.full-width > div {
+      overflow-x: scroll;
+      flex: 1;
+      flex-shrink: 0;
+      flex-basis: auto;
+      justify-content: center; }
+    .article > .row.full-width > div > * {
+      overflow-x: hidden; }
   .article > .row.artifact {
     background: #77BAE6;
     background-size: 32px 32px;
@@ -6780,11 +6789,92 @@ section.intro {
         font-size: 2rem; } }
   .article h4 {
     color: rgba(0, 0, 0, 0.85);
-    letter-spacing: .3em;
     font-size: .8em;
+    letter-spacing: .3em;
     text-transform: uppercase;
     font-weight: 600;
     line-height: 1.5; }
 
 .article.hostelhops em {
   opacity: .8; }
+
+.full-width .story,
+.full-width .personas {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%; }
+
+.full-width .avatars {
+  display: flex; }
+  .full-width .avatars figcaption {
+    display: block;
+    padding: 1rem 0; }
+    .full-width .avatars figcaption .title {
+      color: black;
+      opacity: .4;
+      text-transform: uppercase;
+      letter-spacing: .15rem;
+      font-size: 90%;
+      font-weight: 600; }
+    .full-width .avatars figcaption .name {
+      font-size: 2rem;
+      display: block; }
+  .full-width .avatars figure img {
+    display: block;
+    max-width: 160px;
+    border-radius: 100rem; }
+    .full-width .avatars figure img.with-photo {
+      transition: 1s ease all;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      /* optional, center the image */
+      position: relative;
+      z-index: 300; }
+
+.full-width .story {
+  height: 400px; }
+  .full-width .story:before {
+    content: ' ';
+    height: 6px;
+    width: 100%;
+    background: red;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 0;
+    transform: translate(0, 197px); }
+  .full-width .story > * {
+    z-index: 1; }
+
+.full-width .personas figure {
+  min-width: 400px; }
+  .full-width .personas figure figcaption {
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    opacity: .5;
+    font-size: 90%;
+    margin: 1rem 0; }
+
+.artifact .avatars figure:before {
+  content: '?';
+  background: white;
+  color: #ED7B73;
+  border-radius: 100rem;
+  font-size: 25px;
+  line-height: 50px;
+  height: 50px;
+  width: 50px;
+  margin-bottom: -50px;
+  transform: translate(0, 0);
+  position: relative;
+  display: block; }
+
+.artifact .avatars figure figcaption .name {
+  opacity: .1;
+  display: none; }
+
+.artifact .avatars figure figcaption .title {
+  color: white;
+  opacity: 1; }
